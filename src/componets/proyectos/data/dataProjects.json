@@ -1,0 +1,107 @@
+[
+    {
+        "id": "1",
+        "nombre": "Proyecto Línea Norte",
+        "tipo": "Tendido Eléctrico",
+        "fechaCreacion": "2025-07-10",
+        "estado": "En progreso"
+    },
+    {
+        "id": "2",
+        "nombre": "Subestación Cali",
+        "tipo": "Obra Civil",
+        "fechaCreacion": "2025-06-28",
+        "estado": "Finalizado"
+    },
+    {
+        "id": "3",
+        "nombre": "Expansión Red Zona Sur",
+        "tipo": "Tendido Eléctrico",
+        "fechaCreacion": "2025-05-15",
+        "estado": "Pendiente"
+    },
+    {
+        "id": "4",
+        "nombre": "Proyecto Iluminación Vía 80",
+        "tipo": "Iluminación",
+        "fechaCreacion": "2025-06-05",
+        "estado": "En progreso"
+    },
+    {
+        "id": "5",
+        "nombre": "Reparación Subestación Oeste",
+        "tipo": "Obra Civil",
+        "fechaCreacion": "2025-04-20",
+        "estado": "Finalizado"
+    },
+    {
+        "id": "6",
+        "nombre": "Ampliación Red La Flora",
+        "tipo": "Tendido Eléctrico",
+        "fechaCreacion": "2025-03-15",
+        "estado": "Pendiente"
+    },
+    {
+        "id": "7",
+        "nombre": "Proyecto Torres de Energía",
+        "tipo": "Obra Civil",
+        "fechaCreacion": "2025-02-10",
+        "estado": "En progreso"
+    },
+    {
+        "id": "8",
+        "nombre": "Mantenimiento Subestación Sur",
+        "tipo": "Mantenimiento",
+        "fechaCreacion": "2025-01-05",
+        "estado": "Finalizado"
+    },
+    {
+        "id": "9",
+        "nombre": "Red Primaria San Fernando",
+        "tipo": "Tendido Eléctrico",
+        "fechaCreacion": "2024-12-18",
+        "estado": "En progreso"
+    },
+    {
+        "id": "10",
+        "nombre": "Instalación Postes Ciudad Jardín",
+        "tipo": "Iluminación",
+        "fechaCreacion": "2024-11-25",
+        "estado": "Pendiente"
+    },
+    {
+        "id": "11",
+        "nombre": "Proyecto Nodo Industrial",
+        "tipo": "Tendido Eléctrico",
+        "fechaCreacion": "2024-11-10",
+        "estado": "En progreso"
+    },
+    {
+        "id": "12",
+        "nombre": "Subestación El Limonar",
+        "tipo": "Obra Civil",
+        "fechaCreacion": "2024-10-20",
+        "estado": "Finalizado"
+    },
+    {
+        "id": "13",
+        "nombre": "Ampliación Red Comfandi",
+        "tipo": "Tendido Eléctrico",
+        "fechaCreacion": "2024-09-30",
+        "estado": "Pendiente"
+    },
+    {
+        "id": "14",
+        "nombre": "Iluminación Parque Central",
+        "tipo": "Iluminación",
+        "fechaCreacion": "2024-09-15",
+        "estado": "En progreso"
+    },
+    {
+        "id": "15",
+        "nombre": "Refuerzo Red Eléctrica Pance",
+        "tipo": "Tendido Eléctrico",
+        "fechaCreacion": "2024-08-28",
+        "estado": "Finalizado"
+    }
+]
