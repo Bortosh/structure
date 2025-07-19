@@ -9,9 +9,10 @@ interface NewProjectFormProps {
 const NewProjectForm = ({ open, onClose }: NewProjectFormProps) => {
     const [nombre, setNombre] = useState("");
     const [tipo, setTipo] = useState("");
+    const [fechaLimite, setFechaLimite] = useState("");
 
     const handleSubmit = () => {
-        console.log({ nombre, tipo });
+        console.log({ nombre, tipo, fechaLimite });
         onClose();
     };
 
@@ -31,6 +32,14 @@ const NewProjectForm = ({ open, onClose }: NewProjectFormProps) => {
                     onChange={(e) => setTipo(e.target.value)}
                     fullWidth
                 />
+                <TextField
+                    label="Fecha Límite"
+                    type="date"
+                    value={fechaLimite}
+                    onChange={(e) => setFechaLimite(e.target.value)}
+                    InputLabelProps={{ shrink: true }}
+                    fullWidth
+                />
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="secondary">
@@ -42,6 +51,6 @@ const NewProjectForm = ({ open, onClose }: NewProjectFormProps) => {
             </DialogActions>
         </Dialog>
     );
-}
+};
 
 export default NewProjectForm;
