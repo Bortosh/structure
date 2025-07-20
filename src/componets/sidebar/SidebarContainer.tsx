@@ -20,7 +20,16 @@ export default function SidebarContainer({ isOpen, onClose }: { isOpen: boolean;
             <div>
                 <div className="p-4 border-b border-gray-200 flex justify-between items-center">
                     <h2 className="text-lg font-bold text-gray-700">Menu</h2>
-                    <button className="md:hidden text-gray-600" onClick={onClose}>✕</button>
+                    <div className="flex items-center gap-5 md:hidden">
+                        <button
+                            onClick={handleLogout}
+                            className="text-red-600 hover:text-red-700"
+                            title="Logout"
+                        >
+                            <Logout fontSize="small" />
+                        </button>
+                        <button className="text-gray-600" onClick={onClose}>✕</button>
+                    </div>
                 </div>
 
                 <nav className="flex flex-col">
@@ -51,10 +60,10 @@ export default function SidebarContainer({ isOpen, onClose }: { isOpen: boolean;
                 </nav>
             </div>
 
-            <div className="p-4 pb-20 border-t border-gray-200">
+            <div className="p-4 border-t border-gray-200 hidden md:block">
                 <button
                     onClick={handleLogout}
-                    className="w-full flex items-center gap-3 text-sm text-red-600 hover:text-red-700 transition-colors"
+                    className="w-full flex items-center gap-3 text-sm text-red-600 hover:text-red-700 transition-colors cursor-pointer"
                 >
                     <Logout fontSize="small" />
                     Logout
