@@ -51,7 +51,7 @@ export default function SidebarContainer({ isOpen, onClose }: { isOpen: boolean;
                 </nav>
             </div>
 
-            <div className="p-4 border-t border-gray-200">
+            <div className="p-4 pb-20 border-t border-gray-200">
                 <button
                     onClick={handleLogout}
                     className="w-full flex items-center gap-3 text-sm text-red-600 hover:text-red-700 transition-colors"
