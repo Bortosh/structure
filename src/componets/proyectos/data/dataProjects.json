@@ -1,0 +1,263 @@
+[
+    {
+        "id": "1",
+        "nombre": "City Center Renovation",
+        "tipo": "Commercial",
+        "estado": "In Progress",
+        "fechaLimite": "2023-12-15",
+        "tareas": [
+            {
+                "id": "t1",
+                "nombre": "Instalación eléctrica",
+                "descripcion": "Realizar instalación de cableado y tableros.",
+                "estado": "In Progress",
+                "fechaLimite": "2023-11-15",
+                "responsable": "Juan Pérez",
+                "equipos": [
+                    "e1",
+                    "e3"
+                ]
+            },
+            {
+                "id": "t2",
+                "nombre": "Montaje de estructuras",
+                "descripcion": "Levantar estructuras metálicas para el techo.",
+                "estado": "Not Started",
+                "fechaLimite": "2023-12-01",
+                "responsable": "María Gómez",
+                "equipos": [
+                    "e2"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "nombre": "Parkview Residences",
+        "tipo": "Residential",
+        "estado": "In Progress",
+        "fechaLimite": "2024-02-28",
+        "tareas": [
+            {
+                "id": "t3",
+                "nombre": "Pintura interior",
+                "descripcion": "Pintar paredes y techos en todos los apartamentos.",
+                "estado": "Not Started",
+                "fechaLimite": "2024-01-15",
+                "responsable": "Carlos Mendoza",
+                "equipos": [
+                    "e4"
+                ]
+            },
+            {
+                "id": "t4",
+                "nombre": "Instalación de ventanas",
+                "descripcion": "Colocar marcos y vidrios en todas las ventanas.",
+                "estado": "In Progress",
+                "fechaLimite": "2024-02-10",
+                "responsable": "Lucía Ramírez",
+                "equipos": [
+                    "e5",
+                    "e6"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "nombre": "Industrial Complex",
+        "tipo": "Industrial",
+        "estado": "Completed",
+        "fechaLimite": "2023-09-30",
+        "tareas": [
+            {
+                "id": "t5",
+                "nombre": "Revisión de maquinaria",
+                "descripcion": "Verificar y ajustar el funcionamiento de todas las máquinas.",
+                "estado": "Completed",
+                "fechaLimite": "2023-08-15",
+                "responsable": "Fernando Torres",
+                "equipos": [
+                    "e7"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "nombre": "Harbor Bridge Repairs",
+        "tipo": "Infrastructure",
+        "estado": "In Progress",
+        "fechaLimite": "2024-01-15",
+        "tareas": [
+            {
+                "id": "t6",
+                "nombre": "Cambio de cables",
+                "descripcion": "Sustitución de cables principales del puente.",
+                "estado": "In Progress",
+                "fechaLimite": "2024-01-10",
+                "responsable": "Andrea Ríos",
+                "equipos": [
+                    "e8",
+                    "e9"
+                ]
+            },
+            {
+                "id": "t7",
+                "nombre": "Pintura estructural",
+                "descripcion": "Aplicar pintura anticorrosiva.",
+                "estado": "Not Started",
+                "fechaLimite": "2024-01-12",
+                "responsable": "Marco Díaz",
+                "equipos": [
+                    "e10"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "nombre": "Downtown Office Tower",
+        "tipo": "Commercial",
+        "estado": "At Risk",
+        "fechaLimite": "2024-04-10",
+        "tareas": [
+            {
+                "id": "t8",
+                "nombre": "Inspección de seguridad",
+                "descripcion": "Revisar medidas de seguridad y evacuación.",
+                "estado": "Not Started",
+                "fechaLimite": "2024-03-15",
+                "responsable": "Patricia Silva",
+                "equipos": [
+                    "e11"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "nombre": "Community Recreation Center",
+        "tipo": "Public",
+        "estado": "In Progress",
+        "fechaLimite": "2023-11-20",
+        "tareas": [
+            {
+                "id": "t9",
+                "nombre": "Montaje de gimnasio",
+                "descripcion": "Instalación de equipos deportivos.",
+                "estado": "In Progress",
+                "fechaLimite": "2023-11-05",
+                "responsable": "Luis Torres",
+                "equipos": [
+                    "e12",
+                    "e13"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "nombre": "Solar Farm Installation",
+        "tipo": "Energy",
+        "estado": "In Progress",
+        "fechaLimite": "2024-01-30",
+        "tareas": [
+            {
+                "id": "t10",
+                "nombre": "Montaje de paneles",
+                "descripcion": "Colocación de paneles solares en el terreno.",
+                "estado": "In Progress",
+                "fechaLimite": "2024-01-20",
+                "responsable": "Ana Ruiz",
+                "equipos": [
+                    "e14"
+                ]
+            },
+            {
+                "id": "t11",
+                "nombre": "Instalación eléctrica",
+                "descripcion": "Cableado desde los paneles al centro de control.",
+                "estado": "Not Started",
+                "fechaLimite": "2024-01-25",
+                "responsable": "Roberto Gil",
+                "equipos": [
+                    "e15"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "nombre": "Medical Center Expansion",
+        "tipo": "Healthcare",
+        "estado": "Not Started",
+        "fechaLimite": "2024-05-15",
+        "tareas": [
+            {
+                "id": "t12",
+                "nombre": "Ampliación de consultorios",
+                "descripcion": "Construcción de nuevas áreas para atención.",
+                "estado": "Not Started",
+                "fechaLimite": "2024-04-15",
+                "responsable": "Gabriel Soto",
+                "equipos": [
+                    "e16"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "nombre": "University Dormitory",
+        "tipo": "Educational",
+        "estado": "In Progress",
+        "fechaLimite": "2023-10-25",
+        "tareas": [
+            {
+                "id": "t13",
+                "nombre": "Instalación de mobiliario",
+                "descripcion": "Colocar camas, escritorios y armarios.",
+                "estado": "In Progress",
+                "fechaLimite": "2023-10-20",
+                "responsable": "Mónica Guzmán",
+                "equipos": [
+                    "e17",
+                    "e18"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "nombre": "Shopping Mall Renovation",
+        "tipo": "Retail",
+        "estado": "In Progress",
+        "fechaLimite": "2023-12-01",
+        "tareas": [
+            {
+                "id": "t14",
+                "nombre": "Remodelación de fachada",
+                "descripcion": "Actualización del diseño exterior.",
+                "estado": "In Progress",
+                "fechaLimite": "2023-11-20",
+                "responsable": "Sara Martínez",
+                "equipos": [
+                    "e19",
+                    "e20"
+                ]
+            },
+            {
+                "id": "t15",
+                "nombre": "Reorganización de locales",
+                "descripcion": "Redistribución de espacios internos.",
+                "estado": "Not Started",
+                "fechaLimite": "2023-11-25",
+                "responsable": "Eduardo Herrera",
+                "equipos": [
+                    "e21"
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "id": "e1",
+        "nombre": "Equipo Alpha"
+    },
+    {
+        "id": "e2",
+        "nombre": "Equipo Beta"
+    },
+    {
+        "id": "e3",
+        "nombre": "Equipo Gamma"
+    },
+    {
+        "id": "e4",
+        "nombre": "Equipo Delta"
+    },
+    {
+        "id": "e5",
+        "nombre": "Equipo Omega"
+    },
+    {
+        "id": "e6",
+        "nombre": "Equipo Sigma"
+    },
+    {
+        "id": "e7",
+        "nombre": "Equipo Titan"
+    },
+    {
+        "id": "e8",
+        "nombre": "Equipo Phoenix"
+    },
+    {
+        "id": "e9",
+        "nombre": "Equipo Orion"
+    },
+    {
+        "id": "e10",
+        "nombre": "Equipo Kronos"
+    }
+]

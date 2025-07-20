@@ -2,7 +2,7 @@
 const SupervisoresContainer = () => {
     return (
         <div>
-            <h1>supervisores</h1>
+            <h1>supervisors</h1>
         </div>
     )
 }
