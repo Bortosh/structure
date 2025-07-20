@@ -9,8 +9,8 @@ export default function SelectedProjectCard() {
     if (!selectedProject) {
         return (
             <div className="flex-1 bg-white border border-gray-200 rounded-lg shadow-sm p-6">
-                <h2 className="text-xl font-semibold mb-2 text-gray-800">Proyecto seleccionado</h2>
-                <p className="text-gray-600 text-sm">Aquí se muestran los detalles del proyecto actual.</p>
+                <h2 className="text-xl font-semibold mb-2 text-gray-800">Selected Project</h2>
+                <p className="text-gray-600 text-sm">Details of the current project will appear here.</p>
             </div>
         );
     }
@@ -19,26 +19,26 @@ export default function SelectedProjectCard() {
         <div className="flex-1 bg-white border border-gray-200 rounded-lg shadow-sm p-6 flex flex-col gap-3">
             <div>
                 <h2 className="text-xl font-semibold mb-2 text-gray-800">{selectedProject.nombre}</h2>
-                <p className="text-sm text-gray-600 mb-1">Tipo: {selectedProject.tipo}</p>
-                <p className="text-sm text-gray-600 mb-1">Estado: {selectedProject.estado}</p>
-                <p className="text-sm text-gray-600">Fecha Límite: {selectedProject.fechaLimite}</p>
+                <p className="text-sm text-gray-600 mb-1">Type: {selectedProject.tipo}</p>
+                <p className="text-sm text-gray-600 mb-1">Status: {selectedProject.estado}</p>
+                <p className="text-sm text-gray-600">Deadline: {selectedProject.fechaLimite}</p>
             </div>
 
-            <div className="flex gap-2 mt-4">
+            <div className="flex flex-wrap gap-2 mt-4">
                 <Button variant="contained" color="primary" size="small" sx={{ textTransform: "none" }}>
-                    Editar
+                    Edit
                 </Button>
                 <Button variant="outlined" color="error" size="small" sx={{ textTransform: "none" }}>
-                    Eliminar
+                    Delete
                 </Button>
                 <Button
                     variant="contained"
                     color="secondary"
                     size="small"
                     sx={{ textTransform: "none" }}
-                    onClick={() => navigate(`/proyectos/${selectedProject.id}/tareas`)}
+                    onClick={() => navigate(`/projects/${selectedProject.id}/tasks`)}
                 >
-                    Crear Tarea
+                    Create Task
                 </Button>
             </div>
         </div>

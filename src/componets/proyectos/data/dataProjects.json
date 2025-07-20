@@ -10,7 +10,7 @@
                 "id": "t1",
                 "nombre": "Instalación eléctrica",
                 "descripcion": "Realizar instalación de cableado y tableros.",
-                "estado": "En progreso",
+                "estado": "In Progress",
                 "fechaLimite": "2023-11-15",
                 "responsable": "Juan Pérez",
                 "equipos": [
@@ -22,7 +22,7 @@
                 "id": "t2",
                 "nombre": "Montaje de estructuras",
                 "descripcion": "Levantar estructuras metálicas para el techo.",
-                "estado": "No iniciada",
+                "estado": "Not Started",
                 "fechaLimite": "2023-12-01",
                 "responsable": "María Gómez",
                 "equipos": [
@@ -42,7 +42,7 @@
                 "id": "t3",
                 "nombre": "Pintura interior",
                 "descripcion": "Pintar paredes y techos en todos los apartamentos.",
-                "estado": "No iniciada",
+                "estado": "Not Started",
                 "fechaLimite": "2024-01-15",
                 "responsable": "Carlos Mendoza",
                 "equipos": [
@@ -53,7 +53,7 @@
                 "id": "t4",
                 "nombre": "Instalación de ventanas",
                 "descripcion": "Colocar marcos y vidrios en todas las ventanas.",
-                "estado": "En progreso",
+                "estado": "In Progress",
                 "fechaLimite": "2024-02-10",
                 "responsable": "Lucía Ramírez",
                 "equipos": [
@@ -74,7 +74,7 @@
                 "id": "t5",
                 "nombre": "Revisión de maquinaria",
                 "descripcion": "Verificar y ajustar el funcionamiento de todas las máquinas.",
-                "estado": "Completada",
+                "estado": "Completed",
                 "fechaLimite": "2023-08-15",
                 "responsable": "Fernando Torres",
                 "equipos": [
@@ -94,7 +94,7 @@
                 "id": "t6",
                 "nombre": "Cambio de cables",
                 "descripcion": "Sustitución de cables principales del puente.",
-                "estado": "En progreso",
+                "estado": "In Progress",
                 "fechaLimite": "2024-01-10",
                 "responsable": "Andrea Ríos",
                 "equipos": [
@@ -106,7 +106,7 @@
                 "id": "t7",
                 "nombre": "Pintura estructural",
                 "descripcion": "Aplicar pintura anticorrosiva.",
-                "estado": "No iniciada",
+                "estado": "Not Started",
                 "fechaLimite": "2024-01-12",
                 "responsable": "Marco Díaz",
                 "equipos": [
@@ -126,7 +126,7 @@
                 "id": "t8",
                 "nombre": "Inspección de seguridad",
                 "descripcion": "Revisar medidas de seguridad y evacuación.",
-                "estado": "No iniciada",
+                "estado": "Not Started",
                 "fechaLimite": "2024-03-15",
                 "responsable": "Patricia Silva",
                 "equipos": [
@@ -146,7 +146,7 @@
                 "id": "t9",
                 "nombre": "Montaje de gimnasio",
                 "descripcion": "Instalación de equipos deportivos.",
-                "estado": "En progreso",
+                "estado": "In Progress",
                 "fechaLimite": "2023-11-05",
                 "responsable": "Luis Torres",
                 "equipos": [
@@ -167,7 +167,7 @@
                 "id": "t10",
                 "nombre": "Montaje de paneles",
                 "descripcion": "Colocación de paneles solares en el terreno.",
-                "estado": "En progreso",
+                "estado": "In Progress",
                 "fechaLimite": "2024-01-20",
                 "responsable": "Ana Ruiz",
                 "equipos": [
@@ -178,7 +178,7 @@
                 "id": "t11",
                 "nombre": "Instalación eléctrica",
                 "descripcion": "Cableado desde los paneles al centro de control.",
-                "estado": "No iniciada",
+                "estado": "Not Started",
                 "fechaLimite": "2024-01-25",
                 "responsable": "Roberto Gil",
                 "equipos": [
@@ -198,7 +198,7 @@
                 "id": "t12",
                 "nombre": "Ampliación de consultorios",
                 "descripcion": "Construcción de nuevas áreas para atención.",
-                "estado": "No iniciada",
+                "estado": "Not Started",
                 "fechaLimite": "2024-04-15",
                 "responsable": "Gabriel Soto",
                 "equipos": [
@@ -218,7 +218,7 @@
                 "id": "t13",
                 "nombre": "Instalación de mobiliario",
                 "descripcion": "Colocar camas, escritorios y armarios.",
-                "estado": "En progreso",
+                "estado": "In Progress",
                 "fechaLimite": "2023-10-20",
                 "responsable": "Mónica Guzmán",
                 "equipos": [
@@ -239,7 +239,7 @@
                 "id": "t14",
                 "nombre": "Remodelación de fachada",
                 "descripcion": "Actualización del diseño exterior.",
-                "estado": "En progreso",
+                "estado": "In Progress",
                 "fechaLimite": "2023-11-20",
                 "responsable": "Sara Martínez",
                 "equipos": [
@@ -251,7 +251,7 @@
                 "id": "t15",
                 "nombre": "Reorganización de locales",
                 "descripcion": "Redistribución de espacios internos.",
-                "estado": "No iniciada",
+                "estado": "Not Started",
                 "fechaLimite": "2023-11-25",
                 "responsable": "Eduardo Herrera",
                 "equipos": [

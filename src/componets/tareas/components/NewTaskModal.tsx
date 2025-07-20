@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, MenuItem } from "@mui/material";
 
-export default function NewTaskModal({ open, onClose, onSubmit }:any) {
+export default function NewTaskModal({ open, onClose, onSubmit }: any) {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
-    const [estado, setEstado] = useState("No iniciada");
+    const [estado, setEstado] = useState("Not Started");
     const [fechaLimite, setFechaLimite] = useState("");
     const [responsable, setResponsable] = useState("");
 
@@ -27,21 +27,21 @@ export default function NewTaskModal({ open, onClose, onSubmit }:any) {
 
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-            <DialogTitle>Crear Nueva Tarea</DialogTitle>
+            <DialogTitle>Create New Task</DialogTitle>
             <DialogContent className="flex flex-col gap-4">
-                <TextField label="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} fullWidth />
-                <TextField label="Descripción" value={descripcion} onChange={e => setDescripcion(e.target.value)} fullWidth />
-                <TextField label="Responsable" value={responsable} onChange={e => setResponsable(e.target.value)} fullWidth />
-                <TextField type="date" label="Fecha Límite" value={fechaLimite} onChange={e => setFechaLimite(e.target.value)} InputLabelProps={{ shrink: true }} fullWidth />
-                <TextField select label="Estado" value={estado} onChange={e => setEstado(e.target.value)} fullWidth>
-                    <MenuItem value="No iniciada">No iniciada</MenuItem>
-                    <MenuItem value="En progreso">En progreso</MenuItem>
-                    <MenuItem value="Completada">Completada</MenuItem>
+                <TextField label="Name" value={nombre} onChange={e => setNombre(e.target.value)} fullWidth />
+                <TextField label="Description" value={descripcion} onChange={e => setDescripcion(e.target.value)} fullWidth />
+                <TextField label="Assignee" value={responsable} onChange={e => setResponsable(e.target.value)} fullWidth />
+                <TextField type="date" label="Deadline" value={fechaLimite} onChange={e => setFechaLimite(e.target.value)} InputLabelProps={{ shrink: true }} fullWidth />
+                <TextField select label="Status" value={estado} onChange={e => setEstado(e.target.value)} fullWidth>
+                    <MenuItem value="Not Started">Not Started</MenuItem>
+                    <MenuItem value="In Progress">In Progress</MenuItem>
+                    <MenuItem value="Completed">Completed</MenuItem>
                 </TextField>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose}>Cancelar</Button>
-                <Button variant="contained" onClick={handleSubmit}>Guardar</Button>
+                <Button onClick={onClose}>Cancel</Button>
+                <Button variant="contained" onClick={handleSubmit}>Save</Button>
             </DialogActions>
         </Dialog>
     );

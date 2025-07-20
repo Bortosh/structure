@@ -18,22 +18,22 @@ const NewProjectForm = ({ open, onClose }: NewProjectFormProps) => {
 
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-            <DialogTitle>Crear nuevo proyecto</DialogTitle>
+            <DialogTitle>Create New Project</DialogTitle>
             <DialogContent className="flex flex-col gap-4 py-4">
                 <TextField
-                    label="Nombre"
+                    label="Name"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                     fullWidth
                 />
                 <TextField
-                    label="Tipo"
+                    label="Type"
                     value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
                     fullWidth
                 />
                 <TextField
-                    label="Fecha Límite"
+                    label="Deadline"
                     type="date"
                     value={fechaLimite}
                     onChange={(e) => setFechaLimite(e.target.value)}
@@ -43,10 +43,10 @@ const NewProjectForm = ({ open, onClose }: NewProjectFormProps) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="secondary">
-                    Cancelar
+                    Cancel
                 </Button>
                 <Button onClick={handleSubmit} variant="contained">
-                    Crear
+                    Create
                 </Button>
             </DialogActions>
         </Dialog>

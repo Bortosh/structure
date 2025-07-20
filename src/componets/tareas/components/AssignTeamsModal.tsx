@@ -25,14 +25,14 @@ export default function AssignTeamsModal({ open, onClose, teams, tarea, equiposA
 
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-            <DialogTitle>Asignar Equipos a la Tarea</DialogTitle>
+            <DialogTitle>Assign Teams to Task</DialogTitle>
             <DialogContent className="flex flex-col gap-4 mt-4">
                 <Typography variant="subtitle1">{tarea.nombre}</Typography>
-                <Typography variant="body2">Responsable: {tarea.responsable}</Typography>
-                <Typography variant="body2">Fecha Límite: {tarea.fechaLimite}</Typography>
+                <Typography variant="body2">Assignee: {tarea.responsable}</Typography>
+                <Typography variant="body2">Deadline: {tarea.fechaLimite}</Typography>
 
                 <FormControl fullWidth>
-                    <InputLabel id="equipos-multiple-checkbox-label">Equipos</InputLabel>
+                    <InputLabel id="equipos-multiple-checkbox-label">Teams</InputLabel>
                     <Select
                         labelId="equipos-multiple-checkbox-label"
                         multiple
@@ -51,15 +51,15 @@ export default function AssignTeamsModal({ open, onClose, teams, tarea, equiposA
                 </FormControl>
 
                 <div>
-                    <Typography variant="subtitle2">Equipos Asignados:</Typography>
+                    <Typography variant="subtitle2">Assigned Teams:</Typography>
                     {selectedEquipos.map((id:any) => (
                         <Typography key={id} variant="body2">• {renderEquipoNombre(id)}</Typography>
                     ))}
                 </div>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose}>Cancelar</Button>
-                <Button variant="contained" onClick={handleSave}>Asignar</Button>
+                <Button onClick={onClose}>Cancel</Button>
+                <Button variant="contained" onClick={handleSave}>Assign</Button>
             </DialogActions>
         </Dialog>
     );

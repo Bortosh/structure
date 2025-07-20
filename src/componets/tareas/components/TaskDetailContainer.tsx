@@ -26,7 +26,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const containerStyle = {
     width: "100%",
-    height: "500px",
+    height: "60vh",
+    minHeight: "300px",
 };
 
 const center = {
@@ -43,7 +44,7 @@ const iconosMarcador: Record<string, string> = {
 
 interface Accion {
     id: string;
-    tipo: "marcador" | "linea";
+    tipo: "marker" | "line";
     nombre: string;
     descripcion: string;
     lat?: number;
@@ -64,6 +65,7 @@ const coloresCSS: Record<"rojo" | "azul" | "verde" | "naranja", string> = {
 export default function TaskDetailContainer() {
     const { projectId, taskId } = useParams();
     const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
+    console.log("🚀 ~ TaskDetailContainer ~ mapInstance:", mapInstance)
     const [acciones, setAcciones] = useState<Accion[]>([]);
     const [selectedLatLng, setSelectedLatLng] = useState<{
         lat: number;
@@ -104,7 +106,7 @@ export default function TaskDetailContainer() {
 
         const nuevaAccion: Accion = {
             id: uuidv4(),
-            tipo: "marcador",
+            tipo: "marker",
             nombre,
             descripcion,
             lat: selectedLatLng.lat,
@@ -125,9 +127,9 @@ export default function TaskDetailContainer() {
 
         const nuevaAccion: Accion = {
             id: uuidv4(),
-            tipo: "linea",
-            nombre: "Línea trazada",
-            descripcion: `Línea con ${linePath.length} puntos`,
+            tipo: "line",
+            nombre: "Drawn Line",
+            descripcion: `Line with ${linePath.length} points`,
             path: [...linePath],
         };
 
@@ -147,98 +149,99 @@ export default function TaskDetailContainer() {
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen flex flex-col gap-6">
-            <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4">
                 <h2 className="text-xl font-semibold text-gray-800">
-                    Acciones para la Tarea {taskId} del Proyecto {projectId}
+                    Actions for Task {taskId} of Project {projectId}
                 </h2>
-                <div className="flex gap-2 flex-wrap items-center">
-                    <Button variant="outlined" onClick={() => window.history.back()}>
-                        Volver
-                    </Button>
-                    <FormControl size="small">
-                        <TextField
-                            label="Tipo de Marcador"
-                            value={colorSeleccionado}
-                            onChange={(e) => setColorSeleccionado(e.target.value)}
-                            select
-                            size="small"
-                            sx={{ minWidth: 160, backgroundColor: "white" }}
+                <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-full">
+                        <Button className="sm:col-span-2 md:col-span-1" variant="outlined" onClick={() => window.history.back()}>
+                            Back
+                        </Button>
+                        <FormControl size="small" className="sm:col-span-2 md:col-span-1">
+                            <TextField
+                                label="Marker Type"
+                                value={colorSeleccionado}
+                                onChange={(e) => setColorSeleccionado(e.target.value)}
+                                select
+                                size="small"
+                                sx={{ minWidth: 160, backgroundColor: "white" }}
+                            >
+                                <MenuItem value="rojo">
+                                    <span
+                                        style={{
+                                            display: "inline-block",
+                                            width: 12,
+                                            height: 12,
+                                            borderRadius: "50%",
+                                            backgroundColor: "red",
+                                            marginRight: 8,
+                                        }}
+                                    ></span>
+                                    Red Marker
+                                </MenuItem>
+                                <MenuItem value="azul">
+                                    <span
+                                        style={{
+                                            display: "inline-block",
+                                            width: 12,
+                                            height: 12,
+                                            borderRadius: "50%",
+                                            backgroundColor: "blue",
+                                            marginRight: 8,
+                                        }}
+                                    ></span>
+                                    Blue Marker
+                                </MenuItem>
+                                <MenuItem value="verde">
+                                    <span
+                                        style={{
+                                            display: "inline-block",
+                                            width: 12,
+                                            height: 12,
+                                            borderRadius: "50%",
+                                            backgroundColor: "green",
+                                            marginRight: 8,
+                                        }}
+                                    ></span>
+                                    Green Marker
+                                </MenuItem>
+                                <MenuItem value="naranja">
+                                    <span
+                                        style={{
+                                            display: "inline-block",
+                                            width: 12,
+                                            height: 12,
+                                            borderRadius: "50%",
+                                            backgroundColor: "orange",
+                                            marginRight: 8,
+                                        }}
+                                    ></span>
+                                    Orange Marker
+                                </MenuItem>
+                            </TextField>
+                        </FormControl>
+                        <Button
+                            variant={drawingMode === "marker" ? "contained" : "outlined"}
+                            onClick={() => setDrawingMode("marker")}
                         >
-                            <MenuItem value="rojo">
-                                <span
-                                    style={{
-                                        display: "inline-block",
-                                        width: 12,
-                                        height: 12,
-                                        borderRadius: "50%",
-                                        backgroundColor: "red",
-                                        marginRight: 8,
-                                    }}
-                                ></span>
-                                Marcador Rojo
-                            </MenuItem>
-                            <MenuItem value="azul">
-                                <span
-                                    style={{
-                                        display: "inline-block",
-                                        width: 12,
-                                        height: 12,
-                                        borderRadius: "50%",
-                                        backgroundColor: "blue",
-                                        marginRight: 8,
-                                    }}
-                                ></span>
-                                Marcador Azul
-                            </MenuItem>
-                            <MenuItem value="verde">
-                                <span
-                                    style={{
-                                        display: "inline-block",
-                                        width: 12,
-                                        height: 12,
-                                        borderRadius: "50%",
-                                        backgroundColor: "green",
-                                        marginRight: 8,
-                                    }}
-                                ></span>
-                                Marcador Verde
-                            </MenuItem>
-                            <MenuItem value="naranja">
-                                <span
-                                    style={{
-                                        display: "inline-block",
-                                        width: 12,
-                                        height: 12,
-                                        borderRadius: "50%",
-                                        backgroundColor: "orange",
-                                        marginRight: 8,
-                                    }}
-                                ></span>
-                                Marcador Naranja
-                            </MenuItem>
-                        </TextField>
-                    </FormControl>
-                    <Button
-                        variant={drawingMode === "marker" ? "contained" : "outlined"}
-                        onClick={() => setDrawingMode("marker")}
-                    >
-                        Añadir Marcador
-                    </Button>
-                    <Button
-                        variant={drawingMode === "line" ? "contained" : "outlined"}
-                        onClick={() => setDrawingMode("line")}
-                    >
-                        Trazar Línea
-                    </Button>
-                    <Button variant="outlined" color="error" onClick={() => setLinePath([])}>
-                        Limpiar Todas las Líneas
-                    </Button>
-                    <Button variant="outlined" onClick={guardarLineaComoAccion}>
-                        Guardar Línea
-                    </Button>
+                            Add Marker
+                        </Button>
+                        <Button
+                            variant={drawingMode === "line" ? "contained" : "outlined"}
+                            onClick={() => setDrawingMode("line")}
+                        >
+                            Draw Line
+                        </Button>
+                        <Button variant="outlined" color="error" onClick={() => setLinePath([])}>
+                            Clear All Lines
+                        </Button>
+                        <Button variant="outlined" onClick={guardarLineaComoAccion}>
+                            Save Line
+                        </Button>
+                    </div>
                 </div>
             </div>
-
             {isLoaded ? (
                 <GoogleMap
                     mapContainerStyle={containerStyle}
@@ -248,7 +251,7 @@ export default function TaskDetailContainer() {
                     onClick={handleMapClick}
                 >
                     {acciones
-                        .filter((a) => a.tipo === "marcador")
+                        .filter((a) => a.tipo === "marker")
                         .map((accion) => (
                             <Marker
                                 key={accion.id}
@@ -258,7 +261,7 @@ export default function TaskDetailContainer() {
                             />
                         ))}
 
-                    {selectedAccion && selectedAccion.tipo === "marcador" && (
+                    {selectedAccion && selectedAccion.tipo === "marker" && (
                         <InfoWindow
                             position={{ lat: selectedAccion.lat!, lng: selectedAccion.lng! }}
                             onCloseClick={() => setSelectedAccion(null)}
@@ -272,14 +275,14 @@ export default function TaskDetailContainer() {
                                     size="small"
                                     onClick={() => eliminarAccion(selectedAccion.id)}
                                 >
-                                    Eliminar
+                                    Delete
                                 </Button>
                             </div>
                         </InfoWindow>
                     )}
 
                     {acciones
-                        .filter((a) => a.tipo === "linea")
+                        .filter((a) => a.tipo === "line")
                         .map((accion) => (
                             <Polyline
                                 key={accion.id}
@@ -305,20 +308,20 @@ export default function TaskDetailContainer() {
                     )}
                 </GoogleMap>
             ) : (
-                <p className="text-center text-gray-600">Cargando mapa...</p>
+                <p className="text-center text-gray-600">Loading Map...</p>
             )}
 
             <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-                <DialogTitle>Registrar Acción</DialogTitle>
+                <DialogTitle>Register Action</DialogTitle>
                 <DialogContent className="flex flex-col gap-4 pt-4">
                     <TextField
-                        label="Nombre"
+                        label="Name"
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
                         fullWidth
                     />
                     <TextField
-                        label="Descripción"
+                        label="Description"
                         value={descripcion}
                         onChange={(e) => setDescripcion(e.target.value)}
                         fullWidth
@@ -328,27 +331,27 @@ export default function TaskDetailContainer() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => setOpenDialog(false)} color="secondary">
-                        Cancelar
+                        Cancel
                     </Button>
                     <Button onClick={handleGuardarAccion} variant="contained">
-                        Guardar Acción
+                        Save Action
                     </Button>
                 </DialogActions>
             </Dialog>
 
             <div className="mt-6">
                 <Typography variant="h6" gutterBottom>
-                    Acciones Registradas
+                    Registered Actions
                 </Typography>
                 {acciones.length === 0 ? (
-                    <p className="text-sm text-gray-600">No hay acciones registradas.</p>
+                    <p className="text-sm text-gray-600">No actions registered.</p>
                 ) : (
                     <div className="grid grid-cols-1 gap-3">
                         {acciones.map((accion) => (
                             <Card key={accion.id} className="bg-white shadow-sm">
-                                <CardContent className="flex justify-between items-center">
+                                <CardContent className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                     <div className="flex items-center gap-3">
-                                        {accion.tipo === "marcador" && (
+                                        {accion.tipo === "marker" && (
                                             <div className="flex items-center gap-2">
                                                 <span
                                                     className="w-5 h-5 rounded-full border border-gray-300"
@@ -388,7 +391,7 @@ export default function TaskDetailContainer() {
                         onClick={guardarAccionesEnTarea}
                         disabled={acciones.length === 0}
                     >
-                        Guardar Acciones en la Tarea
+                        Save Actions to Task
                     </Button>
                 </div>
             </div>
