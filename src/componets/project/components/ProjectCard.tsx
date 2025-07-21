@@ -30,7 +30,7 @@ export function ProjectCard({
     }).format(project.estimatedIncome)
 
     return (
-        <Card className="border border-muted rounded-sm bg-background">
+        <Card className="border border-gray-200 shadow-sm rounded-sm bg-background">
             <CardHeader className="p-3 pb-1.5 flex flex-row justify-between items-start">
                 <div className="pr-2">
                     <h3 className="font-semibold text-base leading-tight">{project.name}</h3>
