@@ -10,6 +10,8 @@ import LoginPage from "../pages/LoginPage";
 import PrivateRoute from "./PrivateRoute";
 import Unauthorized from "../pages/Unauthorized";
 import NotFound from "../pages/NotFound";
+import ProjectsContainer from "../componets/project/ProjectsContainer";
+import { ProjectDetail } from "../componets/project/components/ProjectDetail";
 
 const AppRouter = () => {
     return (
@@ -39,6 +41,24 @@ const AppRouter = () => {
                             </ProtectedRoute>
                         }
                     />
+                    <Route
+                        path="projects-new"
+                        element={
+                            <ProtectedRoute allowedRoles={[2]}>
+                                <ProjectsContainer />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="projects/:projectId"
+                        element={
+                            <ProtectedRoute allowedRoles={[2]}>
+                                <ProjectDetail />
+                            </ProtectedRoute>
+                        }
+                    />
+
                     <Route path="supervisors" element={<SupervisoresContainer />} />
                     <Route
                         path="projects/:projectId/tasks"
