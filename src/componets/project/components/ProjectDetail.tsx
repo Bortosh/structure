@@ -1,4 +1,3 @@
-// src/components/ProjectDetail.tsx
 
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
@@ -13,6 +12,13 @@ import { TabsContent } from '@radix-ui/react-tabs'
 import { ProjectDescription } from './ProjectDescription'
 import { ProjectActions } from './ProjectActions'
 import { cn } from '../../dashboard/components/utils/utils'
+import { DeleteProjectDialog } from './delete-project-dialog'
+import { EditProjectForm } from './EditProjectForm'
+import { usePlacesSearch } from '../../../shared/hooks/usePlacesSearch'
+import MapSearch from '../project-map/MapSearch'
+import { ProjectMap } from '../project-map/ProjectMap'
+import type { Marker } from '../project-map/types/marker-types'
+import { useTaskStore } from '../../../globalState/taskStorageLegacy'
 
 export type ProjectTab = 'info' | 'map' | 'tasks' | 'team' | 'financials' | 'files'
 
@@ -22,6 +28,34 @@ export function ProjectDetail() {
     const project = sampleProjects.find(p => p.id === projectId)
     const [currentProject, setCurrentProject] = useState<Project | null>(project || null)
     const [activeTab, setActiveTab] = useState<ProjectTab>('info')
+
+
+    const [isEditFormOpen, setIsEditFormOpen] = useState(false)
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+
+    // Add state for selected location
+    const [selectedLocation, setSelectedLocation] = useState<{ lat: number, lng: number } | null>(null)
+
+    // Marker states
+    const [txMarkers, setTxMarkers] = useState<Marker[]>([])
+    const [serviceMarkers, setServiceMarkers] = useState<Marker[]>([])
+    const [handholeMarkers, setHandholeMarkers] = useState<Marker[]>([])
+    const [tieInMarkers, setTieInMarkers] = useState<Marker[]>([])
+
+    // Task store integration
+    const addTask = useTaskStore((state) => state.addTask)
+    const removeTask = useTaskStore((state) => state.removeTask)
+    const task = useTaskStore((state) => state.tasks)
+    console.log("🚀 ~ ProjectDetail ~ task:", task)
+
+
+    const handleEdit = () => {
+        setIsEditFormOpen(true)
+    }
+
+    const handleDelete = () => {
+        setIsDeleteDialogOpen(true)
+    }
 
     const handleStatusChange = (newStatus: Project['status']) => {
         if (currentProject) {
@@ -42,6 +76,27 @@ export function ProjectDetail() {
                 <p className="text-red-500 font-medium text-lg">Project not found</p>
             </div>
         )
+    }
+
+    // Search functionality
+    const {
+        searchQuery,
+        loadingSearch,
+        searchResults,
+        handleSearchChange,
+        handlePlaceSelect
+    } = usePlacesSearch()
+
+    const handlePlaceSelection = (place: any) => {
+        if (!place?.location) return;
+
+        const newLocation = {
+            lat: place.location.latitude,
+            lng: place.location.longitude
+        };
+
+        setSelectedLocation(newLocation);
+        handlePlaceSelect(place); // This will update the search input and clear results
     }
 
     return (
@@ -81,8 +136,6 @@ export function ProjectDetail() {
                     <TabsTrigger value="files" className="cursor-pointer">Files</TabsTrigger>
                 </TabsList>
 
-
-
                 <TabsContent value="info" className="mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Columna izquierda: Project Info */}
@@ -93,8 +146,8 @@ export function ProjectDetail() {
                             <ProjectDescription project={currentProject} />
                             <ProjectActions
                                 project={currentProject}
-                                onEdit={(p) => console.log('Edit', p)}
-                                onDelete={(p) => console.log('Delete', p)}
+                                onEdit={handleEdit}
+                                onDelete={handleDelete}
                             />
                         </div>
                     </div>
@@ -103,12 +156,80 @@ export function ProjectDetail() {
 
 
 
-                <TabsContent value="map"><div>Map content here</div></TabsContent>
+
+
+
+
+
+
+
+
+                <TabsContent value="map" className="space-y-4">
+                    <MapSearch
+                        searchQuery={searchQuery}
+                        loadingSearch={loadingSearch}
+                        searchResults={searchResults}
+                        onSearchChange={handleSearchChange}
+                        onResultClick={handlePlaceSelection}
+                        className="w-full max-w-md"
+                    />
+                    <ProjectMap
+                        projectId={Number(currentProject.id)}
+                        txMarkers={txMarkers}
+                        serviceMarkers={serviceMarkers}
+                        handholeMarkers={handholeMarkers}
+                        tieInMarkers={tieInMarkers}
+                        setTxMarkers={setTxMarkers}
+                        setServiceMarkers={setServiceMarkers}
+                        setHandholeMarkers={setHandholeMarkers}
+                        setTieInMarkers={setTieInMarkers}
+                        setTasks={addTask}
+                        removeTask={removeTask}
+                        selectedLocation={selectedLocation}
+                    />
+                </TabsContent>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <TabsContent value="tasks"><div>Tasks content here</div></TabsContent>
                 <TabsContent value="team"><div>Team content here</div></TabsContent>
                 <TabsContent value="financials"><div>Financials content here</div></TabsContent>
                 <TabsContent value="files"><div>Files content here</div></TabsContent>
             </Tabs>
+
+            {isEditFormOpen && (
+                <EditProjectForm
+                    project={currentProject}
+                    isOpen={isEditFormOpen}
+                    onClose={() => setIsEditFormOpen(false)}
+                    onSubmit={(updatedProject) => {
+                        setIsEditFormOpen(false)
+                        setCurrentProject(updatedProject)
+                    }}
+                />
+            )}
+
+            {isDeleteDialogOpen && (
+                <DeleteProjectDialog
+                    project={project}
+                    isOpen={isDeleteDialogOpen}
+                    onClose={() => setIsDeleteDialogOpen(false)}
+                    onConfirmDelete={() => {
+                        setIsDeleteDialogOpen(false)
+                        navigate('/projects-new')
+                    }}
+                />
+            )}
         </div>
     )
 }

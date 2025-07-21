@@ -5,7 +5,7 @@ import { EditIcon, TrashIcon } from 'lucide-react'
 
 interface ProjectActionsProps {
     project: Project
-    onEdit: (project: Project) => void
+    onEdit: () => void
     onDelete: (project: Project) => void
 }
 
@@ -19,7 +19,7 @@ export function ProjectActions({ project, onEdit, onDelete }: ProjectActionsProp
                 <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => onEdit(project)}
+                    onClick={onEdit}
                 >
                     <EditIcon className="mr-2 h-4 w-4" />
                     Edit Project

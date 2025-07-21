@@ -52,7 +52,7 @@ export function DeleteProjectDialog({
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-[90vw] md:max-w-[425px]">
+            <DialogContent className="max-w-[90vw] md:max-w-[425px] bg-white">
                 <form onSubmit={handleSubmit}>
                     <DialogHeader>
                         <DialogTitle className="text-red-600">Delete Project</DialogTitle>
@@ -90,7 +90,7 @@ export function DeleteProjectDialog({
                             type="submit"
                             variant="destructive"
                             disabled={buttonDisabled}
-                            className={!isMatch ? 'opacity-50' : ''}
+                            className={!isMatch ? 'bg-red-500' : 'bg-red-500 hover:cursor-pointer'}
                         >
                             Delete Project
                         </Button>
