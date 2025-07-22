@@ -13,7 +13,7 @@ import LineSegmentFormPopover from "./LineSegmentFormPopover";
 
 // Types and Utilities
 import type { Marker } from "./types/marker-types";
-import type { TaskType } from "./types/task-types";
+import type { Task } from "./types/task-types";
 import type { MarkerType } from "./map-utils/marker-icons";
 
 // Hooks
@@ -37,7 +37,7 @@ interface ProjectMapProps {
     setServiceMarkers: (markers: Marker[] | ((prev: Marker[]) => Marker[])) => void;
     setHandholeMarkers: (markers: Marker[] | ((prev: Marker[]) => Marker[])) => void;
     setTieInMarkers: (markers: Marker[] | ((prev: Marker[]) => Marker[])) => void;
-    setTasks?: (id: string, type: TaskType, lat: number, lng: number) => void;
+    setTasks?: (task: Task) => void;
     removeTask?: (id: string) => void;
     selectedLocation?: { lat: number; lng: number } | null;
 }
@@ -345,29 +345,6 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
         }, 50);
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Update marker positions if project coordinates change
     useEffect(() => {
         if (projectId && txMarkers.length > 0 && mapInstance) {
@@ -477,10 +454,15 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
                     }}
                 >
                     <LineSegmentFormPopover
-                        id={selectedLineSegment.id}
+                        id={uuidv4()}
                         midpoint={selectedLineSegment.midpoint}
                         onSubmit={(data: any) => {
-                            setTasks?.(data.id, "Line", data.midpoint.lat(), data.midpoint.lng());
+                            setTasks?.({
+                                id: data.id,
+                                type: "Line",
+                                lat: data.midpoint.lat(),
+                                lng: data.midpoint.lng()
+                            });
                             setSelectedLineSegment(null);
                             // Clear type callback after submit
                             latestTypeCallbackRef.current = null;
@@ -574,7 +556,7 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
                                     );
                                 }
 
-                                setTasks?.(data.id, data.type, data.lat, data.lng);
+                                setTasks?.(data);
                                 setNewMarkerFormInfo(null);
                                 resetTools();
                             }, 50);

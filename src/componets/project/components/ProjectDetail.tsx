@@ -19,6 +19,7 @@ import MapSearch from '../project-map/MapSearch'
 import { ProjectMap } from '../project-map/ProjectMap'
 import type { Marker } from '../project-map/types/marker-types'
 import { useTaskStore } from '../../../globalState/taskStorageLegacy'
+import { MapActionsTable } from '../../task/MapActionsTable'
 
 export type ProjectTab = 'info' | 'map' | 'tasks' | 'team' | 'financials' | 'files'
 
@@ -177,7 +178,21 @@ export function ProjectDetail() {
                     />
                 </TabsContent>
 
-                <TabsContent value="tasks"><div>Tasks content here</div></TabsContent>
+
+
+
+
+                <TabsContent value="tasks" className="mt-4">
+                    <MapActionsTable />
+                </TabsContent>
+
+
+
+
+
+
+
+
                 <TabsContent value="team"><div>Team content here</div></TabsContent>
                 <TabsContent value="financials"><div>Financials content here</div></TabsContent>
                 <TabsContent value="files"><div>Files content here</div></TabsContent>
