@@ -48,7 +48,6 @@ export function ProjectDetail() {
     const task = useTaskStore((state) => state.tasks)
     console.log("🚀 ~ ProjectDetail ~ task:", task)
 
-
     const handleEdit = () => {
         setIsEditFormOpen(true)
     }
@@ -153,17 +152,6 @@ export function ProjectDetail() {
                     </div>
                 </TabsContent>
 
-
-
-
-
-
-
-
-
-
-
-
                 <TabsContent value="map" className="space-y-4">
                     <MapSearch
                         searchQuery={searchQuery}
@@ -188,18 +176,6 @@ export function ProjectDetail() {
                         selectedLocation={selectedLocation}
                     />
                 </TabsContent>
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <TabsContent value="tasks"><div>Tasks content here</div></TabsContent>
                 <TabsContent value="team"><div>Team content here</div></TabsContent>

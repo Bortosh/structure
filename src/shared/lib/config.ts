@@ -14,14 +14,9 @@ export const config: Config = {
     },
 };
 
-// Validate required environment variables
+// Validación general
 if (!import.meta.env.VITE_GOOGLE_MAPS_API_KEY) {
-    throw new Error('Missing NEXT_PUBLIC_GOOGLE_MAPS_API_KEY environment variable');
-}
-
-// Server-side only config validation
-if (typeof window === 'undefined' && !import.meta.env.VITE_GOOGLE_MAPS_SERVER_API_KEY) {
-    throw new Error('Missing GOOGLE_MAPS_SERVER_API_KEY environment variable');
+    throw new Error('Missing VITE_GOOGLE_MAPS_API_KEY environment variable');
 }
 
 // Google Maps Map ID for Advanced Markers
@@ -34,16 +29,12 @@ export const googleMapsScriptUrl = () => {
         console.warn('No Google Maps API key provided. Map functionality will be limited.');
     }
     return `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,drawing,marker,geometry&callback=initMap&loading=async&v=beta`;
-}
+};
 
 // Secure API endpoints that proxy Google Maps requests through our backend
 export const api = {
-    // Geocoding and general Maps queries
-    mapsProxy: '/api/maps-proxy',
-
-    // Places API specific endpoints
     places: {
-        search: '/api/maps-proxy',   // POST method
-        details: '/api/maps-proxy/place-details',
-    }
-} 
+        search: 'https://maps.googleapis.com/maps/api/place/textsearch/json',
+        details: '/api/maps-proxy/place-details', // si luego usas proxy real para esto
+    },
+};

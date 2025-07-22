@@ -1,5 +1,4 @@
 import { useState, useCallback } from "react";
-import { api } from "../lib/config";
 
 interface PlaceResult {
     displayName: string;
@@ -26,28 +25,22 @@ export function usePlacesSearch() {
 
         setLoadingSearch(true);
 
+        // ⚠️ Este endpoint está dando REQUEST_DENIED porque la API Key no tiene habilitado el acceso.
+        // Una vez el cliente habilite la Places API y configure correctamente la key, funcionará sin cambios.
+
         try {
-            const response = await fetch(api.places.search, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    endpoint: "/maps/api/place/textsearch/json",
-                    params: {
-                        query: query.trim(),
-                    },
-                }),
-            });
+            const response = await fetch(
+                `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query.trim())}&inputtype=textquery&fields=place_id,name,formatted_address,geometry&region=us&locationbias=point:25.7617,-80.1918&key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`
+            );
 
             if (!response.ok) {
                 throw new Error("Failed to fetch places");
             }
 
             const data = await response.json();
+            console.log("🚀 ~ handleSearchChange ~ data:", data)
 
-            // Transform the response to match our interface
-            const transformedResults: PlaceResult[] = data.results.map((result: any) => ({
+            const transformedResults: PlaceResult[] = data.candidates.map((result: any) => ({
                 displayName: result.name,
                 formattedAddress: result.formatted_address,
                 location: {
@@ -56,6 +49,7 @@ export function usePlacesSearch() {
                 },
                 placeId: result.place_id,
             }));
+
 
             setSearchResults(transformedResults);
         } catch (error) {

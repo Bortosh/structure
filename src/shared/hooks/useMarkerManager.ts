@@ -56,7 +56,7 @@ export const useMarkerManager = ({
     const visibilityLockRef = useRef(false);
 
     // Track last timeout to prevent race conditions
-    const lastTimeoutRef = useRef<number | null>(null);
+    const lastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     // Track all marker ids to ensure stable references
     const markerIdsRef = useRef(new Set<string>());
