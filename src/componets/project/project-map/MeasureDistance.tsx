@@ -20,11 +20,11 @@ interface MeasureDistanceProps {
 }
 
 // A segment connects two points
-interface Segment {
-    id: string;
-    pointA: google.maps.LatLng;
-    pointB: google.maps.LatLng;
-}
+// interface Segment {
+//     id: string;
+//     pointA: google.maps.LatLng;
+//     pointB: google.maps.LatLng;
+// }
 
 // Each measurement represents a line drawn on the map
 interface Measurement {
@@ -43,7 +43,7 @@ const MeasureDistance: React.FC<MeasureDistanceProps> = ({
     isActive,
     editMode,
     onDeactivate,
-    annotateLineMode,
+    // annotateLineMode,
     onLineClick,
     measurementsRef,
 }) => {
@@ -96,24 +96,24 @@ const MeasureDistance: React.FC<MeasureDistanceProps> = ({
     };
 
     // Find the line segment closest to a given point
-    const getClosestSegment = (
-        path: google.maps.MVCArray<google.maps.LatLng>,
-        latLng: google.maps.LatLng
-    ) => {
-        let minDistance = Infinity;
-        let closest: { pointA: google.maps.LatLng; pointB: google.maps.LatLng } | null = null;
-        for (let i = 1; i < path.getLength(); i++) {
-            const a = path.getAt(i - 1);
-            const b = path.getAt(i);
-            const mid = google.maps.geometry.spherical.interpolate(a, b, 0.5);
-            const dist = google.maps.geometry.spherical.computeDistanceBetween(latLng, mid);
-            if (dist < minDistance) {
-                minDistance = dist;
-                closest = { pointA: a, pointB: b };
-            }
-        }
-        return closest;
-    };
+    // const getClosestSegment = (
+    //     path: google.maps.MVCArray<google.maps.LatLng>,
+    //     latLng: google.maps.LatLng
+    // ) => {
+    //     let minDistance = Infinity;
+    //     let closest: { pointA: google.maps.LatLng; pointB: google.maps.LatLng } | null = null;
+    //     for (let i = 1; i < path.getLength(); i++) {
+    //         const a = path.getAt(i - 1);
+    //         const b = path.getAt(i);
+    //         const mid = google.maps.geometry.spherical.interpolate(a, b, 0.5);
+    //         const dist = google.maps.geometry.spherical.computeDistanceBetween(latLng, mid);
+    //         if (dist < minDistance) {
+    //             minDistance = dist;
+    //             closest = { pointA: a, pointB: b };
+    //         }
+    //     }
+    //     return closest;
+    // };
 
     // Update the line segment color based on its type
     const updateLineColor = (m: Measurement, type?: "Primary" | "Secondary") => {
@@ -134,10 +134,10 @@ const MeasureDistance: React.FC<MeasureDistanceProps> = ({
     };
 
     // Function to update segment polylines when path changes
-    const updateSegmentPolylines = (m: Measurement) => {
-        // Clear existing segment polylines
-        m.polyline.setMap(null);
-    };
+    // const updateSegmentPolylines = (m: Measurement) => {
+    //     // Clear existing segment polylines
+    //     m.polyline.setMap(null);
+    // };
 
     // Attach all click/mouse events needed for drawing
     const attachListeners = (m: Measurement) => {

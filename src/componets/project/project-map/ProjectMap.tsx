@@ -93,7 +93,7 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
         measureDistanceMode,
         setMeasureDistanceMode,
         resetTools,
-        resetToolsExceptAnnotation
+        // resetToolsExceptAnnotation
     } = useMapTools({
         editModeRef,
         dropModeRef,
@@ -107,7 +107,7 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
         index: number;
         latLng: google.maps.LatLng;
     } | null>(null);
-    const [draggableMarkerKey, setDraggableMarkerKey] = useState<string | null>(null);
+    // const [draggableMarkerKey, setDraggableMarkerKey] = useState<string | null>(null);
 
     // Form state for new markers
     const [newMarkerFormInfo, setNewMarkerFormInfo] = useState<{
@@ -283,15 +283,15 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
     }, [mapInstance, selectedLocation]);
 
     // Ghost marker following mouse
-    const handleResultClick = (place: any) => {
-        if (!place?.location || !mapInstance) return;
+    // const handleResultClick = (place: any) => {
+    //     if (!place?.location || !mapInstance) return;
 
-        const lat = place.location.latitude;
-        const lng = place.location.longitude;
+    //     const lat = place.location.latitude;
+    //     const lng = place.location.longitude;
 
-        mapInstance.panTo({ lat, lng });
-        mapInstance.setZoom(20); // Already at 20, keeping for consistency
-    };
+    //     mapInstance.panTo({ lat, lng });
+    //     mapInstance.setZoom(20); // Already at 20, keeping for consistency
+    // };
 
     // Follow mouse with ghost marker when drop mode is active
     if (mapInstance && dropMode) {

@@ -12,15 +12,15 @@ interface MarkerClustererOptions {
 export class MarkerClusterer {
     private map: google.maps.Map;
     private markers: google.maps.marker.AdvancedMarkerElement[];
-    private gridSize: number;
-    private minClusterSize: number;
-    private clusters: any[] = [];
+    // private gridSize: number;
+    // private minClusterSize: number;
+    // private clusters: any[] = [];
 
     constructor(options: MarkerClustererOptions) {
         this.map = options.map;
         this.markers = options.markers || [];
-        this.gridSize = options.gridSize || 60;
-        this.minClusterSize = options.minClusterSize || 2;
+        // this.gridSize = options.gridSize || 60;
+        // this.minClusterSize = options.minClusterSize || 2;
 
         this.init();
     }

@@ -1,4 +1,3 @@
-'use client'
 
 import { useState } from 'react'
 import { CheckIcon, ChevronDownIcon } from 'lucide-react'
@@ -8,9 +7,9 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Project } from './types'
-import { statusColor } from './types'
+} from './ui/Menudropdown'
+import type { ProjectLegacy as Project } from '../../../shared/interfaces/project'
+import { statusColor } from '../../../shared/interfaces/project'
 
 interface ProjectStatusDropdownProps {
     project: Project
