@@ -42,6 +42,15 @@ export default function SidebarContainer({ isOpen, onClose }: { isOpen: boolean;
                         </NavLink>
                     )}
 
+                    {/* {user?.idRol === 2 && (
+                        <NavLink to="/projects" className={({ isActive }) =>
+                            `flex items-center gap-4 p-4 hover:bg-gray-100 transition-colors ${isActive ? "bg-gray-100 font-semibold" : ""}`
+                        } onClick={onClose}>
+                            <Map />
+                            <span className="text-sm">Projects</span>
+                        </NavLink>
+                    )} */}
+                    
                     {user?.idRol === 2 && (
                         <NavLink to="/projects" className={({ isActive }) =>
                             `flex items-center gap-4 p-4 hover:bg-gray-100 transition-colors ${isActive ? "bg-gray-100 font-semibold" : ""}`
