@@ -33,16 +33,16 @@ const AppRouter = () => {
                             </ProtectedRoute>
                         }
                     />
-                    <Route
+                    {/* <Route
                         path="projects"
                         element={
                             <ProtectedRoute allowedRoles={[2]}>
                                 <ProyectosContainer />
                             </ProtectedRoute>
                         }
-                    />
+                    /> */}
                     <Route
-                        path="projects-new"
+                        path="projects"
                         element={
                             <ProtectedRoute allowedRoles={[2]}>
                                 <ProjectsContainer />

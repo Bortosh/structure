@@ -106,7 +106,7 @@ const LineSegmentFormPopover: React.FC<LineSegmentFormPopoverProps> = ({
                     <SelectTrigger id="cable">
                         <SelectValue placeholder="Select cable type" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                         {["1/2", "2/2", "3/2", "4/2", "5/2", "6/2", "1/6", "2/6", "3/6"].map((type) => (
                             <SelectItem key={type} value={type}>
                                 {type}
