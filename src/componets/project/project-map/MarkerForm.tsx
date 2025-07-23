@@ -162,7 +162,7 @@ const MarkerForm: React.FC<MarkerFormProps> = ({
                             <SelectTrigger id="status" className="h-8 text-sm flex-grow px-2">
                                 <SelectValue placeholder="Select" />
                             </SelectTrigger>
-                            <SelectContent align="start" sideOffset={0} className="min-w-[120px]">
+                            <SelectContent align="start" sideOffset={0} className="min-w-[120px] bg-white">
                                 <SelectItem value="Approved">Approved</SelectItem>
                                 <SelectItem value="Pending">Pending</SelectItem>
                             </SelectContent>
@@ -201,7 +201,7 @@ const MarkerForm: React.FC<MarkerFormProps> = ({
                             <SelectTrigger id="handholeType" className="h-8 text-sm flex-grow px-2">
                                 <SelectValue placeholder="Select" />
                             </SelectTrigger>
-                            <SelectContent align="start" sideOffset={0} className="min-w-[120px]">
+                            <SelectContent align="start" sideOffset={0} className="min-w-[120px] bg-white">
                                 <SelectItem value="HH17">HH17</SelectItem>
                                 <SelectItem value="HH24">HH24</SelectItem>
                                 <SelectItem value="HH30">HH30</SelectItem>
