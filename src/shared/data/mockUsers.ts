@@ -8,9 +8,9 @@ export const mockUsers = [
     },
     {
         id: "2",
-        name: "Supervisor",
+        name: "subcontractor",
         lastname: "User",
         idRol: 2,
-        rolName: "Supervisor",
+        rolName: "subcontractor",
     },
 ];
