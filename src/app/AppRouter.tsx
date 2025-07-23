@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LayoutContainer from '../componets/layout/LayoutContainer';
 import DashboardContainer from '../componets/dashboard/DashboardContainer';
-import ProyectosContainer from '../componets/proyectos/ProyectosContainer';
+// import ProyectosContainer from '../componets/proyectos/ProyectosContainer';
 import SupervisoresContainer from "../componets/supervisores/SupervisoresContainer";
 import TareasContainer from "../componets/tareas/TareasContainer";
 import TaskDetailContainer from "../componets/tareas/components/TaskDetailContainer";
