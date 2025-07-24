@@ -21,3 +21,13 @@ export interface Task {
     handholeNumber?: string
     handholeType?: string
 }
+
+export interface TaskLine {
+    id: string;
+    idProject: string;
+    name: string;
+    type: "Line";
+    path: { lat: number; lng: number }[];
+    estado: "pendiente" | "completada";
+    equipos?: string[];
+}

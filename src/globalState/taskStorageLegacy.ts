@@ -1,29 +1,36 @@
 // lib/useTaskStore.ts
 import { create } from "zustand";
 
-import type { Task } from "../componets/project/project-map/types/task-types";
-
+import type { Task, TaskLine } from "../componets/project/project-map/types/task-types";
 
 interface TaskStore {
     tasks: Task[];
+    taskLines: TaskLine[];
     addTask: (task: Task) => void;
+    updateTask: (id: string, updated: Partial<Task>) => void;
     removeTask: (id: string) => void;
-    clearTasks: () => void;
-    updateTask: (id: string, updatedFields: Partial<Task>) => void;
+
+    addTaskLine: (taskLine: TaskLine) => void;
+    removeTaskLine: (id: string) => void;
 }
 
 export const useTaskStore = create<TaskStore>((set) => ({
     tasks: [],
-    addTask: (task: Task) => set((state) => ({ tasks: [...state.tasks, task] })),
-    updateTask: (id, updatedFields) =>
+    taskLines: [],
+    addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
+    updateTask: (id, updated) =>
         set((state) => ({
-            tasks: state.tasks.map((task) =>
-                task.id === id ? { ...task, ...updatedFields } : task
-            ),
+            tasks: state.tasks.map((task) => (task.id === id ? { ...task, ...updated } : task)),
         })),
     removeTask: (id) =>
         set((state) => ({
             tasks: state.tasks.filter((task) => task.id !== id),
         })),
-    clearTasks: () => set({ tasks: [] }),
+
+    addTaskLine: (taskLine) =>
+        set((state) => ({ taskLines: [...state.taskLines, taskLine] })),
+    removeTaskLine: (id) =>
+        set((state) => ({
+            taskLines: state.taskLines.filter((line) => line.id !== id),
+        })),
 }));

@@ -163,7 +163,7 @@ export function ProjectDetail() {
                         className="w-full max-w-md"
                     />
                     <ProjectMap
-                        projectId={Number(currentProject.id)}
+                        projectId={currentProject.id}
                         txMarkers={txMarkers}
                         serviceMarkers={serviceMarkers}
                         handholeMarkers={handholeMarkers}

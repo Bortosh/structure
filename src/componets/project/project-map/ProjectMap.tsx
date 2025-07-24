@@ -26,9 +26,11 @@ import { useLineAnnotation } from "../../../shared/hooks/useLineAnnotation";
 
 // Import MarkerClusterer
 import { MarkerClusterer } from "../project-map//map-utils/marker-clusterer";
+import { MeasureLines } from "./MeasureLines";
+import { RenderTaskLines } from "./RenderTaskLines";
 
 interface ProjectMapProps {
-    projectId: number;
+    projectId: string;
     txMarkers: Marker[];
     serviceMarkers: Marker[];
     handholeMarkers: Marker[];
@@ -59,6 +61,8 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
     // Refs to keep track of mode changes
     const editModeRef = useRef(false);
     const dropModeRef = useRef<MarkerType | null>(null);
+
+    console.log('perro', projectId)
 
     // Helper function to disable marker dragging
     const disableAllMarkersDraggable = () => {
@@ -418,25 +422,19 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
 
             {/* Distance measurement tool */}
             {mapInstance && (
-                <MeasureDistance
-                    mapInstance={mapInstance}
-                    isActive={measureDistanceMode}
-                    editMode={editMode}
-                    onDeactivate={() => setMeasureDistanceMode(false)}
-                    onLineClick={(id, midpoint, typeCallback, cancelCallback) => {
-                        // Show the line segment popover for both new lines and edit mode clicks
-                        setSelectedLineSegment({
-                            id,
-                            midpoint,
-                            onCancel: cancelCallback // Only pass cancel callback for new lines
-                        });
-                        if (typeCallback) {
-                            latestTypeCallbackRef.current = typeCallback;
-                        }
-                    }}
-                    measurementsRef={measurementsRef}
+                <MeasureLines
+                    map={mapInstance}
+                    idProject={projectId}
                 />
             )}
+
+            {mapInstance && projectId && (
+                <RenderTaskLines
+                    map={mapInstance}
+                    idProject={projectId}
+                />
+            )}
+
 
             {/* Line segment form */}
             {mapInstance && selectedLineSegment && (
