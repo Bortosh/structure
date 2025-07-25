@@ -6,18 +6,22 @@ interface ProjectLegacyState {
     legacyProjects: ProjectLegacy[]
     setLegacyProjects: (projects: ProjectLegacy[]) => void
     selectedLegacyProject: ProjectLegacy | null
-    setSelectedLegacyProject: (project: ProjectLegacy | null) => void
+    setSelectedLegacyProject: (project: ProjectLegacy | null | any) => void
     addLegacyProject: (project: ProjectLegacy) => void
     updateLegacyProject: (project: ProjectLegacy) => void
     removeLegacyProject: (projectId: string) => void
+    currentPRojectId: string | null
+    setCurrentIdProject: (id: string) => void
 }
 
 export const useProjectLegacyStore = create<ProjectLegacyState>((set) => ({
     legacyProjects: sampleProjects, // ← Estado inicial con tus mocks
     selectedLegacyProject: null,
+    currentPRojectId: null,
 
     setLegacyProjects: (projects) => set({ legacyProjects: projects }),
     setSelectedLegacyProject: (project) => set({ selectedLegacyProject: project }),
+    setCurrentIdProject: (id) => set({currentPRojectId: id}),
 
     addLegacyProject: (project) =>
         set((state) => ({

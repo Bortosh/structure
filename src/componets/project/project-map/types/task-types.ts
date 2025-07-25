@@ -33,3 +33,13 @@ export interface TaskLine {
     estado: "pendiente" | "completada";
     teamsToTaskLine?: string[];
 }
+
+export interface ExtraTask {
+    id: string;
+    name: string;
+    projectId: string | null;
+    projectName: string;
+    description: string;
+    status: string;
+    deadline: string;
+}
