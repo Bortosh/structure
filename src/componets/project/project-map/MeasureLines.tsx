@@ -7,15 +7,16 @@ import { ModalSaveLine } from "../../tareas/components/ModalSaveLine"; // modal 
 
 interface MeasureLinesProps {
     map: google.maps.Map;
-    idProject: string;
+    projectId: string;
 }
 
-export const MeasureLines = ({ map, idProject }: MeasureLinesProps) => {
+export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
     const [path, setPath] = useState<google.maps.LatLngLiteral[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const polylineRef = useRef<google.maps.Polyline | null>(null);
     const clickListenerRef = useRef<google.maps.MapsEventListener | null>(null);
-    const { addTaskLine, taskLines } = useTaskStore();
+    const { addTaskLine, taskLines, tasks} = useTaskStore();
+    console.log("🚀 ~ MeasureLines ~ task:", tasks)
     console.log("🚀 ~ MeasureLines ~ taskLines:", taskLines)
 
     useEffect(() => {
@@ -62,12 +63,12 @@ export const MeasureLines = ({ map, idProject }: MeasureLinesProps) => {
         if (path.length >= 2 && path.length <= 6) {
             addTaskLine({
                 id: crypto.randomUUID(),
-                idProject: idProject,
+                projectId,
                 name,
                 type: "Line",
                 path,
                 estado: "pendiente",
-                equipos: [],
+                teamsToTaskLine: [],
             });
             reset();
         }

@@ -4,10 +4,10 @@ import { useTaskStore } from "../../../globalState/taskStorageLegacy";
 
 interface Props {
     map: google.maps.Map;
-    idProject: string;
+    projectId: string;
 }
 
-export const RenderTaskLines = ({ map, idProject }: Props) => {
+export const RenderTaskLines = ({ map, projectId }: Props) => {
     const { taskLines } = useTaskStore();
     const polylineRefs = useRef<google.maps.Polyline[]>([]);
 
@@ -18,7 +18,7 @@ export const RenderTaskLines = ({ map, idProject }: Props) => {
         polylineRefs.current.forEach((polyline) => polyline.setMap(null));
         polylineRefs.current = [];
 
-        const projectLines = taskLines.filter((line) => line.idProject === idProject);
+        const projectLines = taskLines.filter((line) => line.projectId === projectId);
 
         projectLines.forEach((line) => {
             const polyline = new google.maps.Polyline({
@@ -30,7 +30,7 @@ export const RenderTaskLines = ({ map, idProject }: Props) => {
             });
             polylineRefs.current.push(polyline);
         });
-    }, [taskLines, map, idProject]);
+    }, [taskLines, map, projectId]);
 
-    return null; // No renderiza nada visualmente en React, solo en el mapa
+    return null;
 };

@@ -12,6 +12,8 @@ export interface Task {
     type: 'TX' | 'Service' | 'Handhole' | 'TieIn' | 'Line'
     lat: number
     lng: number
+    idProject?: string
+    name?: string
     txNumber?: string
     serviceNumber?: string
     relatedTxNumber?: string
@@ -24,10 +26,10 @@ export interface Task {
 
 export interface TaskLine {
     id: string;
-    idProject: string;
+    projectId: string;
     name: string;
     type: "Line";
     path: { lat: number; lng: number }[];
     estado: "pendiente" | "completada";
-    equipos?: string[];
+    teamsToTaskLine?: string[];
 }

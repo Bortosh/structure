@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 
 // Map Components
 import MapToolbar from "./MapToolbar";
-import MeasureDistance from "./MeasureDistance";
 import MarkerPopoverOverlay from "./MarkerPopoverOverlay";
 import GhostMarker from "./GhostMarker";
 import MarkerForm from "./MarkerForm";
@@ -28,6 +27,7 @@ import { useLineAnnotation } from "../../../shared/hooks/useLineAnnotation";
 import { MarkerClusterer } from "../project-map//map-utils/marker-clusterer";
 import { MeasureLines } from "./MeasureLines";
 import { RenderTaskLines } from "./RenderTaskLines";
+import { RenderTaskMarkers } from "./RenderTaskMarkers";
 
 interface ProjectMapProps {
     projectId: string;
@@ -61,8 +61,6 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
     // Refs to keep track of mode changes
     const editModeRef = useRef(false);
     const dropModeRef = useRef<MarkerType | null>(null);
-
-    console.log('perro', projectId)
 
     // Helper function to disable marker dragging
     const disableAllMarkersDraggable = () => {
@@ -114,7 +112,11 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
     // const [draggableMarkerKey, setDraggableMarkerKey] = useState<string | null>(null);
 
     // Form state for new markers
+    const [teamsToTask, setTeamsToTask] = useState(['Fisrt Team', 'Second Team'])
+
     const [newMarkerFormInfo, setNewMarkerFormInfo] = useState<{
+        projectId: string
+        teamsToTask: string[]
         id: string;
         lat: number;
         lng: number;
@@ -185,6 +187,8 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
 
         setDropMode(null);
         setNewMarkerFormInfo({
+            projectId,
+            teamsToTask,
             id: newId,
             lat,
             lng,
@@ -421,20 +425,26 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
             />
 
             {/* Distance measurement tool */}
-            {mapInstance && (
+            {mapInstance && measureDistanceMode && (
                 <MeasureLines
                     map={mapInstance}
-                    idProject={projectId}
+                    projectId={projectId}
                 />
             )}
 
             {mapInstance && projectId && (
                 <RenderTaskLines
                     map={mapInstance}
-                    idProject={projectId}
+                    projectId={projectId}
                 />
             )}
 
+            {mapInstance && projectId && (
+                <RenderTaskMarkers
+                    map={mapInstance}
+                    projectId={projectId}
+                />
+            )}
 
             {/* Line segment form */}
             {mapInstance && selectedLineSegment && (
@@ -517,6 +527,8 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
                 >
                     <MarkerForm
                         id={newMarkerFormInfo.id}
+                        projectId={newMarkerFormInfo.projectId}
+                        teamsToTask={teamsToTask}
                         lat={newMarkerFormInfo.lat}
                         lng={newMarkerFormInfo.lng}
                         type={newMarkerFormInfo.type}
