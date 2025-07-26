@@ -30,9 +30,14 @@ export interface TaskLine {
     name: string;
     type: "Line";
     path: { lat: number; lng: number }[];
-    estado: "pendiente" | "completada";
+    status: "active" | "completed";
     teamsToTaskLine?: string[];
+    cableType?: string;
+    typeLine?: "Primary" | "Secondary";
+    pointAName?: string;
+    pointBName?: string;
 }
+
 
 export interface ExtraTask {
     id: string;
@@ -42,4 +47,16 @@ export interface ExtraTask {
     description: string;
     status: string;
     deadline: string;
+}
+
+export type LineType = "Primary" | "Secondary";
+
+export interface TaskLineData {
+    id: string;
+    name: string;
+    midpoint: google.maps.LatLng;
+    pointAName: string;
+    pointBName: string;
+    cableType: string;
+    type: LineType;
 }

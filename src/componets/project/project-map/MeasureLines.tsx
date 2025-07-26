@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useTaskStore } from "../../../globalState/taskStorageLegacy";
 import { Button } from "../components/ui/botton";
-import { ModalSaveLine } from "../../tareas/components/ModalSaveLine"; // modal para pedir nombre
+import { CreateTaskLineWrapperModal } from "../../task/ui/CreateTaskLineWrapperModal";
+import type { TaskLineData } from "./types/task-types";
 
 interface MeasureLinesProps {
     map: google.maps.Map;
@@ -15,7 +16,7 @@ export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const polylineRef = useRef<google.maps.Polyline | null>(null);
     const clickListenerRef = useRef<google.maps.MapsEventListener | null>(null);
-    const { addTaskLine, taskLines, tasks} = useTaskStore();
+    const { addTaskLine, taskLines, tasks } = useTaskStore();
     console.log("🚀 ~ MeasureLines ~ task:", tasks)
     console.log("🚀 ~ MeasureLines ~ taskLines:", taskLines)
 
@@ -59,20 +60,25 @@ export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
         }
     }, [path]);
 
-    const handleSave = (name: string) => {
+    const handleSave = (data: TaskLineData) => {
         if (path.length >= 2 && path.length <= 6) {
             addTaskLine({
-                id: crypto.randomUUID(),
-                projectId,
-                name,
+                id: data.id,
+                name: data.name,
                 type: "Line",
+                projectId,
                 path,
-                estado: "pendiente",
+                status: "active",
                 teamsToTaskLine: [],
+                cableType: data.cableType,
+                typeLine: data.type,
+                pointAName: data.pointAName,
+                pointBName: data.pointBName,
             });
             reset();
         }
     };
+
 
     const reset = () => {
         setPath([]);
@@ -81,17 +87,36 @@ export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
         polylineRef.current = null;
     };
 
+    const getMidpoint = (): google.maps.LatLng => {
+        if (path.length < 2) {
+            const fallback = path[0] || { lat: 0, lng: 0 };
+            return new google.maps.LatLng(fallback.lat, fallback.lng);
+        }
+
+        const first = path[0];
+        const last = path[path.length - 1];
+
+        const midpointLat = (first.lat + last.lat) / 2;
+        const midpointLng = (first.lng + last.lng) / 2;
+
+        return new google.maps.LatLng(midpointLat, midpointLng);
+    };
+
+
     return (
         <>
             {path.length >= 2 && (
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-50">
-                    <Button onClick={() => setIsModalOpen(true)}>Guardar línea</Button>
+                    <Button onClick={() => setIsModalOpen(true)}>Save Line</Button>
                 </div>
             )}
-            <ModalSaveLine
+            <CreateTaskLineWrapperModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                onSave={handleSave}
+                id={crypto.randomUUID()}
+                midpoint={getMidpoint()}
+                onSubmit={handleSave}
+                onCancel={reset}
+                onTypeChange={() => { }}
             />
         </>
     );
