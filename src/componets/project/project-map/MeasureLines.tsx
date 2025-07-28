@@ -1,19 +1,23 @@
 // MeasureLines.tsx
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useTaskStore } from "../../../globalState/taskStorageLegacy";
-import { Button } from "../components/ui/botton";
 import { CreateTaskLineWrapperModal } from "../../task/ui/CreateTaskLineWrapperModal";
 import type { TaskLineData } from "./types/task-types";
 
 interface MeasureLinesProps {
     map: google.maps.Map;
     projectId: string;
+    path: google.maps.LatLngLiteral[];
+    setPath: React.Dispatch<React.SetStateAction<google.maps.LatLngLiteral[]>>;
+    isModalOpen: boolean;
+    setIsModalOpen: (v: boolean) => void;
 }
 
-export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
-    const [path, setPath] = useState<google.maps.LatLngLiteral[]>([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+
+export const MeasureLines = ({ map, projectId, path, setPath, isModalOpen, setIsModalOpen }: MeasureLinesProps) => {
+    // const [path, setPath] = useState<google.maps.LatLngLiteral[]>([]);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
     const polylineRef = useRef<google.maps.Polyline | null>(null);
     const circlesRef = useRef<google.maps.Circle[]>([]);
     const clickListenerRef = useRef<google.maps.MapsEventListener | null>(null);
@@ -131,11 +135,11 @@ export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
 
     return (
         <>
-            {path.length >= 2 && (
+            {/* {path.length >= 2 && (
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-50">
                     <Button onClick={() => setIsModalOpen(true)}>Save Line</Button>
                 </div>
-            )}
+            )} */}
             <CreateTaskLineWrapperModal
                 isOpen={isModalOpen}
                 id={crypto.randomUUID()}
