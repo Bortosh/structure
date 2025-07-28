@@ -13,8 +13,10 @@ import { Checkbox } from "./ui/checkbox";
 
 export interface MarkerFormData {
     id: string;
+    projectId: string;
     lat: number;
     lng: number;
+    teamsToTask: string[]
     type: "TX" | "Service" | "Handhole" | "TieIn";
     txNumber?: string;
     serviceNumber?: string;
@@ -28,6 +30,8 @@ export interface MarkerFormData {
 
 interface MarkerFormProps {
     id: string;
+    teamsToTask: string[]
+    projectId: string;
     lat: number;
     lng: number;
     type: "TX" | "Service" | "Handhole" | "TieIn";
@@ -37,6 +41,8 @@ interface MarkerFormProps {
 
 const MarkerForm: React.FC<MarkerFormProps> = ({
     id,
+    projectId,
+    teamsToTask,
     lat,
     lng,
     type,
@@ -65,6 +71,8 @@ const MarkerForm: React.FC<MarkerFormProps> = ({
 
         const markerData: MarkerFormData = {
             id,
+            projectId,
+            teamsToTask,
             lat,
             lng,
             type,

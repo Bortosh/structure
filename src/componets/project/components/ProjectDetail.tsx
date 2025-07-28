@@ -1,6 +1,6 @@
 
 import { useNavigate, useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowLeftIcon } from 'lucide-react'
 import { Button } from '../components/ui/botton'
 import { ProjectStatusDropdown } from './ui/project-status-dropdown'
@@ -20,6 +20,7 @@ import { ProjectMap } from '../project-map/ProjectMap'
 import type { Marker } from '../project-map/types/marker-types'
 import { useTaskStore } from '../../../globalState/taskStorageLegacy'
 import { MapActionsTable } from '../../task/MapActionsTable'
+import { useProjectLegacyStore } from '../../../globalState/projectLegacyStore'
 
 export type ProjectTab = 'info' | 'map' | 'tasks' | 'team' | 'financials' | 'files'
 
@@ -27,9 +28,14 @@ export function ProjectDetail() {
     const { projectId } = useParams()
     const navigate = useNavigate()
     const project = sampleProjects.find(p => p.id === projectId)
+    const { setCurrentIdProject, setSelectedLegacyProject } = useProjectLegacyStore()
     const [currentProject, setCurrentProject] = useState<Project | null>(project || null)
     const [activeTab, setActiveTab] = useState<ProjectTab>('info')
 
+    useEffect(() => {
+        setCurrentIdProject(String(projectId))
+        setSelectedLegacyProject(project)
+    }, [])
 
     const [isEditFormOpen, setIsEditFormOpen] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
@@ -163,7 +169,7 @@ export function ProjectDetail() {
                         className="w-full max-w-md"
                     />
                     <ProjectMap
-                        projectId={Number(currentProject.id)}
+                        projectId={currentProject.id}
                         txMarkers={txMarkers}
                         serviceMarkers={serviceMarkers}
                         handholeMarkers={handholeMarkers}
