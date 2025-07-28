@@ -15,6 +15,7 @@ export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
     const [path, setPath] = useState<google.maps.LatLngLiteral[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const polylineRef = useRef<google.maps.Polyline | null>(null);
+    const circlesRef = useRef<google.maps.Circle[]>([]);
     const clickListenerRef = useRef<google.maps.MapsEventListener | null>(null);
     const { addTaskLine, taskLines, tasks } = useTaskStore();
     console.log("🚀 ~ MeasureLines ~ task:", tasks)
@@ -58,6 +59,29 @@ export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
         } else {
             polylineRef.current.setPath(path);
         }
+
+        // Limpiar círculos anteriores
+        circlesRef.current.forEach((circle) => circle.setMap(null));
+        circlesRef.current = [];
+
+        // Crear nuevos círculos
+        const newCircles = path.map((point) => {
+            const latLng = new google.maps.LatLng(point.lat, point.lng);
+            const circle = new google.maps.Circle({
+                map,
+                center: latLng,
+                radius: 3,
+                fillColor: "#ff1100",
+                fillOpacity: 0.6,
+                strokeColor: "#ff1e00",
+                strokeWeight: 1,
+                strokeOpacity: 0.8,
+            });
+            return circle;
+        });
+
+        circlesRef.current = newCircles;
+
     }, [path]);
 
     const handleSave = (data: TaskLineData) => {
@@ -85,6 +109,8 @@ export const MeasureLines = ({ map, projectId }: MeasureLinesProps) => {
         setIsModalOpen(false);
         polylineRef.current?.setMap(null);
         polylineRef.current = null;
+        circlesRef.current.forEach((circle) => circle.setMap(null));
+        circlesRef.current = [];
     };
 
     const getMidpoint = (): google.maps.LatLng => {

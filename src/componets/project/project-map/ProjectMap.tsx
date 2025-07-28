@@ -113,6 +113,7 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
 
     // Form state for new markers
     const [teamsToTask, setTeamsToTask] = useState(['Fisrt Team', 'Second Team'])
+    console.log("🚀 ~ ProjectMap ~ setTeamsToTask:", setTeamsToTask)
 
     const [newMarkerFormInfo, setNewMarkerFormInfo] = useState<{
         projectId: string
