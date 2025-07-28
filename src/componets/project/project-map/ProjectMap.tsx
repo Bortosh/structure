@@ -115,6 +115,10 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
     const [teamsToTask, setTeamsToTask] = useState(['Fisrt Team', 'Second Team'])
     console.log("🚀 ~ ProjectMap ~ setTeamsToTask:", setTeamsToTask)
 
+    // Estado para trazado de línea
+    const [linePath, setLinePath] = useState<google.maps.LatLngLiteral[]>([]);
+    const [isLineModalOpen, setIsLineModalOpen] = useState(false);
+
     const [newMarkerFormInfo, setNewMarkerFormInfo] = useState<{
         projectId: string
         teamsToTask: string[]
@@ -364,6 +368,16 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
         }
     }, [projectId, txMarkers, mapInstance, markerManagerRef]);
 
+    useEffect(() => {
+        if (!mapInstance) return;
+
+        if (measureDistanceMode) {
+            mapInstance.setOptions({ draggableCursor: "crosshair" }); // Cambia el cursor
+        } else {
+            mapInstance.setOptions({ draggableCursor: "" }); // Restaura el cursor por defecto
+        }
+    }, [mapInstance, measureDistanceMode]);
+
     return (
         <div className="w-full h-[600px] rounded-lg overflow-hidden relative">
             {/* Map container */}
@@ -423,6 +437,10 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
                 }}
                 cancelNewMarkerForm={handleCancelNewMarkerForm}
                 resetTools={resetTools}
+
+                linePath={linePath}
+                openLineModal={() => setIsLineModalOpen(true)}
+                clearLinePath={() => setLinePath([])}
             />
 
             {/* Distance measurement tool */}
@@ -430,6 +448,10 @@ const ProjectMap: React.FC<ProjectMapProps> = ({
                 <MeasureLines
                     map={mapInstance}
                     projectId={projectId}
+                    path={linePath}
+                    setPath={setLinePath}
+                    isModalOpen={isLineModalOpen}
+                    setIsModalOpen={setIsLineModalOpen}
                 />
             )}
 

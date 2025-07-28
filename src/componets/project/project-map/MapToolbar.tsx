@@ -40,6 +40,11 @@ interface MapToolbarProps {
 
     cancelNewMarkerForm: () => void;
     resetTools: () => void;
+
+    linePath: google.maps.LatLngLiteral[];
+    openLineModal: () => void;
+    clearLinePath: () => void;
+
 }
 
 const MapToolbar: React.FC<MapToolbarProps> = ({
@@ -57,6 +62,10 @@ const MapToolbar: React.FC<MapToolbarProps> = ({
 
     measureDistanceMode,
     toggleMeasureDistanceMode,
+
+    linePath,
+    openLineModal,
+    clearLinePath
 
     // cancelNewMarkerForm,
     // resetTools,
@@ -174,6 +183,45 @@ const MapToolbar: React.FC<MapToolbarProps> = ({
                             </TooltipTrigger>
                             <TooltipContent side="left">Draw Lines</TooltipContent>
                         </Tooltip>
+
+                        {/* Sub-tools for line actions */}
+                        {measureDistanceMode && (
+                            <div className="flex flex-col items-center gap-1 mt-1">
+                                {/* Save Line */}
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button
+                                            onClick={openLineModal}
+                                            size="icon"
+                                            disabled={linePath.length < 2}
+                                            className={cn(
+                                                "h-7 w-7",
+                                                linePath.length >= 2
+                                                    ? "bg-green-600 text-white hover:bg-green-700"
+                                                    : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                                            )}
+                                        >
+                                            💾
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent side="left">Save Line</TooltipContent>
+                                </Tooltip>
+
+                                {/* Clear Line */}
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button
+                                            onClick={clearLinePath}
+                                            size="icon"
+                                            className="h-7 w-7 bg-red-200 text-white hover:bg-red-400"
+                                        >
+                                            ❌
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent side="left">Clear Line</TooltipContent>
+                                </Tooltip>
+                            </div>
+                        )}
 
                         {/* Edit Markers */}
                         <Tooltip>
